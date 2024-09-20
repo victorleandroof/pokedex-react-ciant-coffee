@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import api from './services/api';
+import Grid from './components/Grid';
+import Loading from './components/Loading'
+import Pagination from './components/Pagination';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import SearchBar from './components/Search';
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const limit = 10;
+  const limit = 12;
   
   useEffect(() => {
     const fetchPokemons = async () => {
@@ -26,50 +31,29 @@ function App() {
     fetchPokemons();
   }, [page]);
 
-  const getPokemonImage = (name) => {
-    return `https://img.pokemondb.net/sprites/home/normal/${name}.png`;
-  };
-
   return (
     <div className="App container">
       <h1>Pokedex</h1>
-      <div className="row">
-        {loading ? (
-          <div className="col-12">Carregando...</div>
-        ) : (
-          pokemons.map(pokemon => (
-            <div key={pokemon.name} className="col-md-4 mb-4">
-              <div className="card">
-                <img 
-                  src={getPokemonImage(pokemon.name)} 
-                  className="card-img-top" 
-                  alt={pokemon.name} 
-                />
-                <div className="card-body">
-                  <h5 className="card-title">{pokemon.name}</h5>
-                </div>
-              </div>
-            </div>
-          ))
-        )}
+      {loading ? (
+        <Loading />
+      ) : (
+      <div>
+        <SearchBar
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+        />
+        <Grid 
+          searchTerm={searchTerm}
+          pokemons={pokemons}
+        />
+        <Pagination 
+          page={page}
+          setPage={setPage}
+          totalPages={totalPages}
+          loading={loading}
+        />
       </div>
-      <div className="mt-3 text-center">
-        <button 
-          className="btn btn-primary" 
-          disabled={page === 1} 
-          onClick={() => setPage(page - 1)}
-        >
-          Anterior
-        </button>
-        <span className="mx-2">Página {page} de {totalPages}</span>
-        <button 
-          className="btn btn-primary" 
-          disabled={page === totalPages} 
-          onClick={() => setPage(page + 1)}
-        >
-          Próxima
-        </button>
-      </div>
+      )}
     </div>
   );
 }
