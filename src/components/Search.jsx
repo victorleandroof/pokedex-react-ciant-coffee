@@ -1,12 +1,12 @@
-function SearchBar({ searchTerm, setSearchTerm }) {
-    return(
-        <input 
+function SearchBar({searchTerm, setSearchTerm}) {
+    return (
+        <input
             value={searchTerm}
-            type='text' 
+            type='text'
             placeholder="buscar pokemon"
-            onChange={e => setSearchTerm(e.target.value)}    
+            onChange={e => setSearchTerm(e.target.value)}
         ></input>
     )
-  }
-  
-  export default SearchBar;
+}
+
+export default SearchBar;
