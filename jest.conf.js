@@ -16,9 +16,10 @@ module.exports = {
   testEnvironment: "jsdom",
   moduleNameMapper: {
     '^axios$': 'axios/dist/node/axios.cjs',
+     "\\.(css|less|scss|sass)$": "<rootDir>/styleMock.js"
   },
   bail: true,
-  testMatch: ["**/*.test.js"],
+  testMatch: ["**/*.spec.js"],
   transformIgnorePatterns: [
     "/node_modules/(?!axios)"
   ],
