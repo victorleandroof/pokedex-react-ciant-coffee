@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import api from './services/api';
-import Grid from './components/Grid';
-import Loading from './components/Loading'
-import Pagination from './components/Pagination';
+import api from './services/api.js';
+import Grid from './components/Grid.jsx';
+import Loading from './components/Loading.jsx'
+import Pagination from './components/Pagination.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import SearchBar from './components/Search';
+import SearchBar from './components/Search.jsx';
 
 function App() {
   const [pokemons, setPokemons] = useState([]);

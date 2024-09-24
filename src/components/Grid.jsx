@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Modal from './Modal.jsx';
 
 function Grid({ pokemons, searchTerm }) {
     const [isModalOpen, setModalOpen] = useState(false);
@@ -17,7 +18,7 @@ function Grid({ pokemons, searchTerm }) {
                 key={pokemon.name} 
                 className="col-md-4 mb-4"
                 onClick={() => {
-                    setModalOpen(true)
+                    setModalOpen(!isModalOpen)
                     setSelectedPokemon(pokemon.name)
                 }}
             >
@@ -33,7 +34,11 @@ function Grid({ pokemons, searchTerm }) {
                 </div>
             </div>
         })}
-        { isModalOpen && <div>Modal {selectedPokemon}</div> }
+        { isModalOpen && <div>
+          <Modal 
+            pokemonName={selectedPokemon} 
+            ></Modal>
+        </div> }
     </div>
     )
   }
