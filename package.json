@@ -16,7 +16,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test -- jest",
+    "test:coverage": "react-scripts test -- --config jest.config.js --coverage --watchAll",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -37,7 +38,6 @@
       "last 1 safari version"
     ]
   },
-  "type": "module",
   "devDependencies": {
     "@babel/preset-env": "^7.25.4",
     "@babel/preset-react": "^7.24.7",
